@@ -276,15 +276,15 @@ void ifPresentOrElse(Consumer<? super T> action,Runnable emptyAction)
 `Optional<String> transformed = optionalString.filter(s ->slength()>=8)map(String::toUpperCase);`
 你也可以用or 方法将空 ptional 替换为一个可替代的ptional。
 ```java
-// 产生一个Optional，如果当前的 optional 的值存在，那么所产生的 Optional的值是通过将给定的函数应用于当前的 Optional的值而得到的;否则，产生一个空的 Optional。
+// 产生一个Optional，如果当前的 streams.optional 的值存在，那么所产生的 Optional的值是通过将给定的函数应用于当前的 Optional的值而得到的;否则，产生一个空的 Optional。
 <U> Optional<U> map(Function<? super T,? extends U> mapper)
-// 产生一个optional，如果当前的 optional的值满足给定的谓词条件，那么所产生的Optional的值就是当前 optional 的值;否则，产生一个空 Optional。
+// 产生一个optional，如果当前的 optional的值满足给定的谓词条件，那么所产生的Optional的值就是当前 streams.optional 的值;否则，产生一个空 Optional。
 Optional<T> filter(Predicate<? super T> predicate)
 // 如果当前 Optional不为空，则产生当前的 Optional;否则由 supplier 产生一个Optional
 Optional<T> or(Supplier<?extends Optional<? extends T>> supplier) 
 ```
 ### 4.3 使用 Optional 的建议
-如果没有正确地使用Optional值，那么相比以往得到"某物或nul"的方式，你并没有得到任何好处: get 方法会在 optional 值存在的情况下获得其中包装的元素，或者在不存在的情况下抛出一个 NoSuchElementException 异常。因此
+如果没有正确地使用Optional值，那么相比以往得到"某物或nul"的方式，你并没有得到任何好处: get 方法会在 streams.optional 值存在的情况下获得其中包装的元素，或者在不存在的情况下抛出一个 NoSuchElementException 异常。因此
 ```java
 Optional<T> optionalValue = ...
 optionalValue.get().someMethod();
@@ -307,7 +307,7 @@ if (value != null) value.someMethod();
 * 不要在集合中放置 Optional 对象，并且不要将它们用作 map 的键。应该直接收集其中的值
 
 ### 4.4 
-stream方法会将一个`optional<T>`对象转换为一个具有0个或1个元素的`Sream<T>`对象, 请考虑下面这样一个例子
+stream方法会将一个`streams.optional<T>`对象转换为一个具有0个或1个元素的`Sream<T>`对象, 请考虑下面这样一个例子
 
 假设我们有一个用户ID流和方法`Optional<User> lookup(String id)`, 我们无法保证 ID 流里每个 ID 都能在数据库中查询到相应的用户, 这些ID是无效的, 如何健壮地进行处理呢?
 一方面我们可以过滤掉无效ID, 然后将 get 方法应用于剩余的ID: 

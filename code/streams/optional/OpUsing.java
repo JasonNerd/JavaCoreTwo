@@ -1,4 +1,4 @@
-package optional;
+package streams.optional;
 
 import streams.CountWord;
 
@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import static streams.StreamCreating.showStream;
 
