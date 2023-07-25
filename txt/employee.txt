@@ -1,0 +1,6 @@
+5
+Carl Cracker|75000.0|1987|12|15
+Harry Hacker|50000.0|1989|10|1
+Tony Tester|40000.0|1990|3|15
+Julie Matter|85000.0|1992|2|29
+Hemmer Crusher|72000.0|1985|10|23
