@@ -1,8 +1,9 @@
 package pojo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Employee {
+public class Employee implements Serializable {
     String name;
     Double salary;
     LocalDate entryDate;
