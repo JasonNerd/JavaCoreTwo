@@ -331,7 +331,7 @@ public static void main(String[] args) throws IOException {
 }
 ```
 
-### 随机文件访问
+### 5. 随机文件访问
 `RandomAccessFile` 类可以在文件中的任何位置查找或写入数据。磁盘文件都是随机访问的,但是与网络套接字通信的输入/输出流却不是。你可以打开一个随机访问文件，只用于读入或者同时用于读写，你可以通过使用字符串"r"(用于读入访问)或"rw"(用于读入/写出访问)作为构造器的第二个参数来指定这个选项:
 ```java
 var in = new RandomAccessFile("employee.dat"，"r");
@@ -339,15 +339,26 @@ var inOut = new RandomAccessFile("employeedat”，“rw");
 ```
 当你将已有文件作为 `RandomAccessFile` 打开时，这个文件并不会被删除随机访问文件有一个表示下一个将被读入或写出的字节所处位置的文件指针，seek方法可以用来将这个文件指针设置到文件中的任意字节位置，seek 的参数是一个 long类型的整数，它的值位于 0到文件按照字节来度量的长度之间。getFilePointer 方法将返回文件指针的当前位置。
 
-`RandomAccessFile` 类同时实现了 DataInput 和 DataOutput 接口。为了读写随机访问文件, **可以使用在前面小节中讨论过的诸如 readInt/writeInt 和readChar/writeChar 之类的方法**. 我们现在要剖析一个将雇员记录存储到随机访问文件中的示例程序，其中每条记录都拥有相同的大小，这样我们可以很容易地读人任何记录。假设你希望将文件指针置于第三条记录处，那么你只需将文件指针置于恰当的字节位置，然后就可以开始读人了
+`RandomAccessFile` 类同时实现了 DataInput 和 DataOutput 接口。为了读写随机访问文件, **可以使用在前面小节中讨论过的诸如 readInt/writeInt 和readChar/writeChar 之类的方法**. 我们现在要剖析一个**将雇员记录存储到随机访问文件中**的示例程序，其中**每条记录都拥有相同的大小**, 这样我们可以很容易地读入任何记录。假设你希望将文件指针置于第三条记录处, 那么你只需将文件指针置于恰当的字节位置，然后就可以开始读入了
+```java
 long n =3;
 in.seek((n-1)* RECORD SIZE);
 var e = new Employee();
 e.readData(in);
-如果你希望修改记录，然后将其存回到相同的位置，那么请切记要将文件指针置回到这条记录的开始处:
+```
+如果你希望修改记录，然后将其存回到相同的位置，那么请切记要**将文件指针置回到这条记录的开始处**:
+```java
 in.seek((n -1)*RECORD SIZE);
 e.writeData(out);
-要确定文件中的字节总数，可以使用 lenoth 方法，而记录的总数则等于用字节总数除以每条记录的大小。
-long nbytes = in.length(); // length in bytesint nrecords =(int) (nbytes / RECORD SIZE):
+```
+要确定文件中的字节总数, 可以使用 length 方法, 而记录的总数则等于用字节总数除以每条记录的大小。
+```java
+long nbytes = in.length(); // length in bytes
+int nrecords =(int) (nbytes / RECORD_SIZE);
+```
 
 ## 附录
+
+
+
+
